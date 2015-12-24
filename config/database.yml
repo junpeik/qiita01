@@ -1,0 +1,18 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  database: qiita01_development
+
+test:
+  <<: *default
+  database: qiita01_test
+
+production:
+  <<: *default
+  database: qiita01_production
+  username: qiita01
+  password: <%= ENV['QIITA01_DATABASE_PASSWORD'] %>
