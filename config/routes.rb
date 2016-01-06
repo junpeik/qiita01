@@ -1,6 +1,17 @@
 Rails.application.routes.draw do
-  root 'posts#index'
+  root 'home#index'
   devise_for :users
+  resource :user do
+    collection do
+      get 'items'
+      get 'stock'
+      get 'private'
+      get 'comments'
+    end
+  end
+  resources :items do
+
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
