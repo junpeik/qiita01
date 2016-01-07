@@ -1,0 +1,17 @@
+%header.navbar.navbar-default
+  .container
+    .navbar-nav
+      = link_to 'Qiita', root_path
+    .navbar-nav.pull-right
+      - if user_signed_in?
+        = link_to '投稿する', '#'
+        = link_to 'ストック一覧', '#'
+        = link_to 'マイページ', '#'
+        = link_to '設定', '#'
+        = link_to 'ログアウト', '#'
+      - else
+        = link_to 'ユーザ登録', '#'
+        = link_to 'ログイン', '#'
+  - if notice
+    .col-sm-12
+      .alert.alert-success= notice
