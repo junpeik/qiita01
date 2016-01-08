@@ -1,0 +1,23 @@
+.container
+  .row
+    .col-sm-8
+      %h2 プログラミング知識を共有しよう。
+      = link_to 'ノウハウ・Tipsを投稿する', '#', class: 'btn btn-success'
+      %ul.nav.nav-tabs
+        %li.active
+          = link_to 'フィード', '#'
+        %li
+          = link_to 'すべての投稿', '#'
+        %li.pull-right
+          = link_to '自分の投稿', '#'
+        %li.pull-right
+          = link_to 'ストック', '#'
+      - @items.each do |item|
+        .user_name
+          = item.user.email
+        .title
+          = item.title
+        .body
+          = item.body
+    .col-sm-3.col-sm-offset-1
+      %p ユーザ名
