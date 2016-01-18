@@ -5,19 +5,17 @@
       = link_to 'ノウハウ・Tipsを投稿する', '#', class: 'btn btn-success'
       %ul.nav.nav-tabs
         %li.active
-          = link_to 'フィード', '#'
+          = link_to 'フィード', root_path
         %li
-          = link_to 'すべての投稿', '#'
+          = link_to 'すべての投稿', items_path
         %li.pull-right
           = link_to '自分の投稿', '#'
         %li.pull-right
           = link_to 'ストック', '#'
       - @items.each do |item|
         .user_name
-          = item.user.email
+          = link_to item.user.username, '#'
         .title
-          = item.title
-        .body
-          = item.body
+          = link_to item.title, user_item_path(item.user, item)
     .col-sm-3.col-sm-offset-1
       %p ユーザ名
