@@ -2,3 +2,4 @@
 = @item.body
 
 = link_to '編集する', edit_user_item_path(@item.user, @item)
+= link_to '削除する', item_path(@item), method: :delete, data: { confirm: 'Are you sure?' }

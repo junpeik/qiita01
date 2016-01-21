@@ -1,44 +1,46 @@
 class ItemsController < ApplicationController
-  before_action :set_user, only: [:show, :new, :create, :edit, :update]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
 
   def index
     @items = Item.all
   end
 
   def show
-    @item = @user.items.find(params[:id])
   end
 
   def new
-    @item = @user.items.build
+    @item = current_user.items.build
   end
 
   def edit
-    @item = @user.items.find(params[:id])
   end
 
   def create
-    @item = @user.items.build(item_params)
+    @item = current_user.items.build(item_params)
     if @item.save
-      redirect_to user_item_path(@user, @item)
+      redirect_to user_item_path(current_user, @item)
     else
       render 'new'
     end
   end
 
   def update
-    @item = @user.items.find(params[:id])
     if @item.update(item_params)
-      redirect_to user_item_path(@user, @item)
+      redirect_to user_item_path(current_user, @item)
     else
       render 'edit'
     end
   end
 
+  def destroy
+    @item.destroy
+    redirect_to root_url
+  end
+
   private
 
-    def set_user
-      @user = User.find(params[:user_id])
+    def set_item
+      @item = current_user.items.find(params[:id])
     end
 
     def item_params
