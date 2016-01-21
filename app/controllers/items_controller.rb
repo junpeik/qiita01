@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_user, only: [:show, :new, :create]
+  before_action :set_user, only: [:show, :new, :create, :edit, :update]
 
   def index
     @items = Item.all
@@ -13,12 +13,25 @@ class ItemsController < ApplicationController
     @item = @user.items.build
   end
 
+  def edit
+    @item = @user.items.find(params[:id])
+  end
+
   def create
     @item = @user.items.build(item_params)
     if @item.save
       redirect_to user_item_path(@user, @item)
     else
       render 'new'
+    end
+  end
+
+  def update
+    @item = @user.items.find(params[:id])
+    if @item.update(item_params)
+      redirect_to user_item_path(@user, @item)
+    else
+      render 'edit'
     end
   end
 
