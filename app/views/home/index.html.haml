@@ -2,7 +2,7 @@
   .row
     .col-sm-8
       %h2 プログラミング知識を共有しよう。
-      = link_to 'ノウハウ・Tipsを投稿する', '#', class: 'btn btn-success'
+      = link_to 'ノウハウ・Tipsを投稿する', new_user_item_path(current_user), class: 'btn btn-success'
       %ul.nav.nav-tabs
         %li.active
           = link_to 'フィード', root_path
