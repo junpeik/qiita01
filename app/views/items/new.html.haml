@@ -1,8 +1,9 @@
 %h1 new
 
-= form_for @item do |f|
+= form_for [@item.user, @item] do |f|
   = f.label :title
   = f.text_field :title
+  = f.error :title
   %br
   = f.label :body
   = f.text_area :body

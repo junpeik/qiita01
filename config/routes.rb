@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       get 'comments'
     end
   end
-  resources :items, only: :index
+  resources :items
+  #controllerオプションを使うusers/items
   root 'home#index'
 end
