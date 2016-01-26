@@ -1,10 +1,13 @@
 %h1 new
 
 = form_for @item do |f|
-  = f.label :title
-  = f.text_field :title
-  %br
-  = f.label :body
-  = f.text_area :body
-  %br
-  = f.submit
+  - if @item.errors.any?
+    = f.label :title
+    = @item.errors.messages[:title][0]
+    = f.text_field :title
+    %br
+    = f.label :body
+    = @item.errors.messages[:body][0]
+    = f.text_area :body
+    %br
+    = f.submit
