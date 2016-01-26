@@ -3,3 +3,13 @@
 
 = link_to '編集する', edit_user_item_path(@item.user, @item)
 = link_to '削除する', user_item_path(@item.user, @item), method: :delete, data: { confirm: 'Are you sure?' }
+
+.comment
+  - @item.comments.each do |comment|
+    .comment_user
+      = comment.user.username
+    .comment_body
+      = comment.body
+= form_for [@item, @item.comments.build] do |f|
+  = f.text_area :body
+  = f.submit

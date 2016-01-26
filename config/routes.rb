@@ -8,6 +8,8 @@ Rails.application.routes.draw do
       get 'comments'
     end
   end
-  resources :items, only: %i(index new create)
+  resources :items, only: %i(index new create) do
+    resources :comments, only: %i(create destroy)
+  end
   root 'home#index'
 end
