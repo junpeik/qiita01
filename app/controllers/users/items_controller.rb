@@ -1,7 +1,8 @@
 class Users::ItemsController < ApplicationController
-  before_action :set_item
+  before_action :set_item, except: :show
 
   def show
+    @item = Item.find(params[:id])
   end
 
   def edit
@@ -24,5 +25,9 @@ class Users::ItemsController < ApplicationController
 
     def set_item
       @item = current_user.items.find(params[:id])
+    end
+
+    def item_params
+      params.require(:item).permit(:title, :body)
     end
 end

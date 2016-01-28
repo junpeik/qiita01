@@ -1,13 +1,14 @@
 %h1 edit
 
-= form_for @item do |f|
+= form_for [current_user, @item] do |f|
+  = f.label :title
   - if @item.errors.any?
-    = f.label :title
     = @item.errors.messages[:title][0]
-    = f.text_field :title
-    %br
-    = f.label :body
+  = f.text_field :title
+  %br
+  = f.label :body
+  - if @item.errors.any?
     = @item.errors.messages[:body][0]
-    = f.text_area :body
-    %br
-    = f.submit
+  = f.text_area :body
+  %br
+  = f.submit
