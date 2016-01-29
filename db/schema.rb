@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160126133006) do
+ActiveRecord::Schema.define(version: 20160128174835) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,17 @@ ActiveRecord::Schema.define(version: 20160126133006) do
 
   add_index "items", ["user_id"], name: "index_items_on_user_id", using: :btree
 
+  create_table "stocks", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "stocks", ["item_id"], name: "index_stocks_on_item_id", using: :btree
+  add_index "stocks", ["user_id", "item_id"], name: "index_stocks_on_user_id_and_item_id", unique: true, using: :btree
+  add_index "stocks", ["user_id"], name: "index_stocks_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -60,4 +71,6 @@ ActiveRecord::Schema.define(version: 20160126133006) do
   add_foreign_key "comments", "items"
   add_foreign_key "comments", "users"
   add_foreign_key "items", "users"
+  add_foreign_key "stocks", "items"
+  add_foreign_key "stocks", "users"
 end

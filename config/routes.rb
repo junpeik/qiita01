@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   end
   resources :items, only: %i(index new create) do
     resources :comments, only: %i(create destroy)
+    resources :stocks, only: %i(create destroy)
   end
   root 'home#index'
 end
