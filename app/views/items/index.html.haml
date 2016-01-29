@@ -2,19 +2,19 @@
   .row
     .col-sm-8
       %h2 プログラミング知識を共有しよう。
-      = link_to 'ノウハウ・Tipsを投稿する', '#', class: 'btn btn-success'
+      = link_to 'ノウハウ・Tipsを投稿する', new_item_path, class: 'btn btn-success'
       %ul.nav.nav-tabs
-        %li.active
-          = link_to 'フィード', root_path
         %li
+          = link_to 'フィード', root_path
+        %li.active
           = link_to 'すべての投稿', items_path
         %li.pull-right
-          = link_to '自分の投稿', '#'
+          = link_to '自分の投稿', private_items_user_path(current_user)
         %li.pull-right
-          = link_to 'ストック', '#'
+          = link_to 'ストック', stocks_path
       - @items.each do |item|
         .user_name
-          = link_to item.user.username, '#'
+          = link_to item.user.username, user_path(item.user)
         .title
           = link_to item.title, user_item_path(item.user, item)
     .col-sm-3.col-sm-offset-1

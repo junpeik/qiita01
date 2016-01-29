@@ -1,5 +1,9 @@
 class StocksController < ApplicationController
-  before_action :set_item
+  before_action :set_item, except: :index
+
+  def index
+    @stocks = current_user.stocks.all
+  end
 
   def create
     @stock = @item.stocks.build

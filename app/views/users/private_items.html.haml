@@ -4,11 +4,11 @@
       %h2 プログラミング知識を共有しよう。
       = link_to 'ノウハウ・Tipsを投稿する', new_item_path, class: 'btn btn-success'
       %ul.nav.nav-tabs
-        %li.active
+        %li
           = link_to 'フィード', root_path
         %li
           = link_to 'すべての投稿', items_path
-        %li.pull-right
+        %li.pull-right.active
           = link_to '自分の投稿', private_items_user_path(current_user)
         %li.pull-right
           = link_to 'ストック', stocks_path

@@ -1,10 +1,10 @@
 %header.navbar.navbar-default
   .container
     .navbar-nav
-      = link_to 'Qiita', root_path
+      = link_to image_tag('qiita.png', size: '74x26'), root_path
     .navbar-nav.navbar-right
       - if user_signed_in?
-        = link_to '投稿する', '#'
+        = link_to '投稿する', new_item_path, class: 'btn btn-success'
         = link_to 'ストック一覧', '#'
         %button.btn.btn-default{data: {toggle: 'dropdown'}} Dropdown
         %ul.dropdown-menu

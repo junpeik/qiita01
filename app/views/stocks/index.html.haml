@@ -4,18 +4,18 @@
       %h2 プログラミング知識を共有しよう。
       = link_to 'ノウハウ・Tipsを投稿する', new_item_path, class: 'btn btn-success'
       %ul.nav.nav-tabs
-        %li.active
+        %li
           = link_to 'フィード', root_path
         %li
           = link_to 'すべての投稿', items_path
         %li.pull-right
           = link_to '自分の投稿', private_items_user_path(current_user)
-        %li.pull-right
+        %li.pull-right.active
           = link_to 'ストック', stocks_path
-      - @items.each do |item|
+      - @stocks.each do |stock|
         .user_name
-          = link_to item.user.username, user_path(item.user)
+          = link_to stock.user.username, user_path(stock.user)
         .title
-          = link_to item.title, user_item_path(item.user, item)
+          = link_to stock.item.title, user_item_path(stock.user, stock.item)
     .col-sm-3.col-sm-offset-1
       %p ユーザ名

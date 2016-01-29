@@ -3,8 +3,7 @@ Rails.application.routes.draw do
   resources :users, only: :show do
     resources :items, only: %i(show edit update destroy), controller: 'users/items'
     member do
-      get 'stock'
-      get 'private'
+      get 'private_items'
       get 'comments'
     end
   end
@@ -12,5 +11,6 @@ Rails.application.routes.draw do
     resources :comments, only: %i(create destroy)
     resources :stocks, only: %i(create destroy)
   end
+  resources :stocks, only: :index
   root 'home#index'
 end
