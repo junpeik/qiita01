@@ -5,6 +5,7 @@ class ItemsController < ApplicationController
 
   def new
     @item = current_user.items.build
+    @item.tags.build
   end
 
   def create
@@ -19,6 +20,6 @@ class ItemsController < ApplicationController
   private
 
     def item_params
-      params.require(:item).permit(:title, :body)
+      params.require(:item).permit(:title, :body, tags_attributes: [:name])
     end
 end

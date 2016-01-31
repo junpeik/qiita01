@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160128174835) do
+ActiveRecord::Schema.define(version: 20160131214027) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,17 @@ ActiveRecord::Schema.define(version: 20160128174835) do
 
   add_index "comments", ["item_id"], name: "index_comments_on_item_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+
+  create_table "item_tags", force: :cascade do |t|
+    t.integer  "item_id"
+    t.integer  "tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "item_tags", ["item_id", "tag_id"], name: "index_item_tags_on_item_id_and_tag_id", unique: true, using: :btree
+  add_index "item_tags", ["item_id"], name: "index_item_tags_on_item_id", using: :btree
+  add_index "item_tags", ["tag_id"], name: "index_item_tags_on_tag_id", using: :btree
 
   create_table "items", force: :cascade do |t|
     t.string   "title"
@@ -47,6 +58,12 @@ ActiveRecord::Schema.define(version: 20160128174835) do
   add_index "stocks", ["item_id"], name: "index_stocks_on_item_id", using: :btree
   add_index "stocks", ["user_id", "item_id"], name: "index_stocks_on_user_id_and_item_id", unique: true, using: :btree
   add_index "stocks", ["user_id"], name: "index_stocks_on_user_id", using: :btree
+
+  create_table "tags", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -70,6 +87,8 @@ ActiveRecord::Schema.define(version: 20160128174835) do
 
   add_foreign_key "comments", "items"
   add_foreign_key "comments", "users"
+  add_foreign_key "item_tags", "items"
+  add_foreign_key "item_tags", "tags"
   add_foreign_key "items", "users"
   add_foreign_key "stocks", "items"
   add_foreign_key "stocks", "users"
