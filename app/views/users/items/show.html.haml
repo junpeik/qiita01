@@ -1,10 +1,17 @@
+%h2= 'タイトル'
 = @item.title
 %br
+%h2= 'タグ'
+- @item.tags.each do |tag|
+  = tag.name
+%br
+%h2= '本文'
 = @item.body
 %br
 = link_to '編集する', edit_user_item_path(@item.user, @item)
 = link_to '削除する', user_item_path(@item.user, @item), method: :delete, data: { confirm: 'Are you sure?' }
 
+%h2= 'コメント'
 .comment
   - @item.comments.each do |comment|
     .comment_user

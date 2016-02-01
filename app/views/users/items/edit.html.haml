@@ -6,6 +6,10 @@
     = @item.errors.messages[:title][0]
   = f.text_field :title
   %br
+  = f.fields_for :tags do |tag|
+    = tag.label :name
+    = tag.text_field :name
+  %br
   = f.label :body
   - if @item.errors.any?
     = @item.errors.messages[:body][0]
